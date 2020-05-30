@@ -26,3 +26,13 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
+const User = require('./models/user')
+const Task = require('./models/task')
+
+const main = async()=>{
+    const user = await User.findById('5ed0b655dc3e592be47a27b5')
+    await user.populate('tasks').execPopulate()
+    console.log(user.tasks)
+}
+
+main()
